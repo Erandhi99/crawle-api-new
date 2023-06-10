@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import coursesRoute from "./routes/courses.js";
+import imageRoute from "./routes/imageRoutes.js"
 import cookieParser from "cookie-parser";
+import cors from 'cors'
 const app = express();
 dotenv.config();
 
@@ -22,12 +24,15 @@ mongoose.connection.on("disconnect", () => {
 });
 
 //middleware
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/courses", coursesRoute);
+app.use("/api/images", imageRoute);
+
 
 
 app.use((err, req, res, next) => {

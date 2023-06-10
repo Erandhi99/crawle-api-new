@@ -18,7 +18,7 @@ import {
 const router = express.Router();
 
 //CREATE
-router.post("/", verifyTeacher, createCourse);
+router.post("/", createCourse);
 
 //UPDATE
 router.put("/:id", verifyTeacher, updateCourse);

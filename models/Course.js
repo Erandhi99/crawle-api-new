@@ -16,8 +16,12 @@ const CourseSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
-  courseCover: {
+  instructorName: {
     type: String,
+    required: true,
+  },
+  courseCover: {
+    type: Array,
   },
   rating: {
     type: Number,
@@ -34,7 +38,7 @@ const CourseSchema = new mongoose.Schema({
       required: true
     },
     material: {
-      type: String,
+      type: Array,
     },
   }],
 },{timestamps: true});
