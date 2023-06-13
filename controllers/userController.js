@@ -3,12 +3,14 @@ import Course from "../models/Course.js";
 import User from "../models/User.js";
 
 export const updateUser = async (req, res, next) => {
+  console.log(req)
   try {
     const updateduser = await User.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true }
     );
+    
     res.status(200).json(updateduser);
   } catch (err) {
     next(err);
@@ -60,7 +62,7 @@ export const enrollCourse = async (req, res) => {
     user.enrolledCourses.push({
       courseId,
       progress: 0,
-      enrolledAt: Date.now(),
+      modifiedAt: Date.now(),
       updatedAt: Date.now(),
     });
 
@@ -123,3 +125,5 @@ export const enrollCourse = async (req, res) => {
       return res.status(500).json({ message: "Internal server error" });
     }
   };
+
+

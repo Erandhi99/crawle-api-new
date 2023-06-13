@@ -25,24 +25,24 @@ const router = express.Router();
 // });
 
 //UPDATE
-router.put("/:id", verifyUser, updateUser);
+router.put("/:id",  updateUser);
 
 //DELETE
-router.delete("/:id", verifyUser, deleteUser);
+router.delete("/:id",  deleteUser);
 
 //GET
-router.get("/:id", verifyUser, getUser);
+router.get("/:id", getUser);
 
 //GETALL
-router.get("/", verifyAdmin, getUsers);
+router.get("/", getUsers);
 
 //ENROLL COURSE
 router.post("/enroll", verifyToken, enrollCourse);
 
 //GET TOTAL ENROLLMENT COUNT CERTAIN COURSE
-router.get("/:courseId/student-count", verifyTeacher, getTotalEnrolledCount);
+router.get("/:courseId/student-count",  getTotalEnrolledCount);
 
 //GET TOTAL COURSE COUNT BY TEACHER
-router.get("/:userId/total-courses-created", verifyTeacher, getTotalCoursesCreated);
+router.get("/:userId/total-courses-created",  getTotalCoursesCreated);
 
 export default router;
