@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import { createError } from "../utils/error.js";
 import {
+  changeCourseStatus,
   createCourse,
   deleteCourse,
   getCourse,
@@ -21,15 +22,19 @@ const router = express.Router();
 router.post("/", createCourse);
 
 //UPDATE
-router.put("/:id", verifyTeacher, updateCourse);
+router.put("/:id",  updateCourse);
 
 //DELETE
-router.delete("/:id", verifyTecherOrAdmin, deleteCourse);
+router.delete("/:id", deleteCourse);
 
 //GET
 router.get("/:id", getCourse);
 
 //GETALL
 router.get("/", getCourses);
+
+//change the course status
+router.patch("/:courseId/changeStatus", changeCourseStatus);
+
 
 export default router;

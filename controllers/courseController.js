@@ -49,3 +49,25 @@ export const getCourses = async (req, res, next) => {
     next(err);
   }
 };
+
+//change course status
+export const changeCourseStatus = async (req, res) => {
+  const { courseId } = req.params;
+  const { status } = req.body;
+
+  try {
+    const course = await Course.findById(courseId);
+
+    if (!course) {
+      return res.status(404).json({ error: "Course not found" });
+    }
+
+    course.suspended = status;
+    await course.save();
+
+    res.status(200).json({ message: "Course status changed successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
