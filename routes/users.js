@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  changeUserRole,
   deleteUser,
   enrollCourse,
   getTotalCoursesCreated,
@@ -8,7 +9,7 @@ import {
   getUsers,
   updateUser,
 } from "../controllers/userController.js";
-import { verifyAdmin, verifyTeacher, verifyToken, verifyUser } from "../utils/verifyToken.js";
+
 
 const router = express.Router();
 
@@ -37,12 +38,15 @@ router.get("/:id", getUser);
 router.get("/", getUsers);
 
 //ENROLL COURSE
-router.post("/enroll", verifyToken, enrollCourse);
+router.post("/enroll", enrollCourse);
 
 //GET TOTAL ENROLLMENT COUNT CERTAIN COURSE
 router.get("/:courseId/student-count",  getTotalEnrolledCount);
 
 //GET TOTAL COURSE COUNT BY TEACHER
 router.get("/:userId/total-courses-created",  getTotalCoursesCreated);
+
+//Change the user role
+router.patch("/:userId/changeRole", changeUserRole);
 
 export default router;

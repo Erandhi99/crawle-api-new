@@ -24,7 +24,13 @@ mongoose.connection.on("disconnect", () => {
 });
 
 //middleware
-app.use(cors());
+app.use(
+  cors({
+     origin: ["http://localhost:3000"], //requests originating from http://localhost:3000 are allowed to access the server's resources
+     credentials: true, //This indicates that the server is willing to accept and send cookies as part of cross-origin requests.
+     
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
 

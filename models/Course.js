@@ -33,6 +33,10 @@ const CourseSchema = new mongoose.Schema({
     min: 0,
     max: 5,
   },
+  suspended: {
+    type: Boolean,
+    default: false,
+  },
   lessons: [{
     title: {
       type: String,

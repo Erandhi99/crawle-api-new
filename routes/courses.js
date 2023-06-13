@@ -1,6 +1,7 @@
 import express, { Router } from "express";
 import { createError } from "../utils/error.js";
 import {
+  changeCourseStatus,
   createCourse,
   deleteCourse,
   getCourse,
@@ -31,5 +32,9 @@ router.get("/:id", getCourse);
 
 //GETALL
 router.get("/", getCourses);
+
+//change the course status
+router.patch("/:courseId/changeStatus", changeCourseStatus);
+
 
 export default router;
